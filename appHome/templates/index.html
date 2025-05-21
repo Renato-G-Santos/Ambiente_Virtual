@@ -1,0 +1,33 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        background-color: antiquewhite;
+    }
+</style>
+<div class="container text-center">
+    <div class="row align-items-start" style="text-align: left; margin-left: 20px; margin-top: 10%;">
+        <div class="col"  >
+
+            <H1> Art Decó</H1>
+            
+            <p>Nobres viajantes, sede bem-vindos a este reino, onde o constante se entrelaça com o magicamente mágico, onde tudo pulsa vivo e vossa própria jornada floresce no espírito do "Do It Your Serf"! Verdadeiramente, vós sois ditoso de estar aqui.</p>
+            <a class="navbar-brand" href="{% url 'add_usuario' %}">
+              <button type="button" class="btn btn-primary">>cadastre aqui<</button>     
+          </a>
+        </div>
+
+      <div class="col">
+            <img src="{% static 'tenis.png' %}" alt="" style="width: 400px; height: 400px; margin-top: -8%;">
+      </div>
+    </div>
+  </div>
+
+<div class="container-md" >
+
+
+
+</div>
+
+{% endblock %}

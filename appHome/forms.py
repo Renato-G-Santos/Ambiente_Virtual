@@ -1,0 +1,38 @@
+from django import forms
+from appHome.models import Usuario, Produto
+
+#formulário 
+
+class FormUsuario(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['nome', 'email', 'senha', 'cep', 'numero_residencia']
+    widgets = {
+        'nome': forms.TextInput(attrs={'class': 'form-control border border-success'}),
+        'email': forms.EmailInput(attrs={'class': 'form-control border border-success', type: 'email'}),
+        'senha': forms.PasswordInput(attrs={'class': 'form-control border border-success', type: 'password'}),
+        'cep': forms.TextInput(attrs={'class': 'form-control border border-success'}),
+        'numero_residencia': forms.TextInput(attrs={'class': 'form-control border border-success'}),
+    }
+
+class FormProduto(forms.ModelForm):
+    class Meta:
+        model = Produto
+        fields = ['nome', 'preco', 'descricao', 'foto', 'estoque']
+    widgets = {
+        'descricao': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
+        'foto': forms.FileInput(attrs={'accept': 'image/*'}),
+        'estoque': forms.NumberInput(attrs={'min': 0}),
+        'nome': forms.TextInput(attrs={'class': 'form-control border border-success'}),
+        'preco': forms.NumberInput(attrs={'class': 'form-control border border-success'}),
+    }
+
+class FormLogin(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['email', 'senha']
+
+    widgets = {
+        'email': forms.EmailInput(attrs={'class': 'form-control border border-success', type: 'email'}),
+        'senha': forms.PasswordInput(attrs={'class': 'form-control border border-success', type: 'password'}),
+    }

@@ -1,0 +1,21 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container w-50">
+        <h1 class="text-center"> Área Restrita</h1>
+        
+        <form action="{% url 'fazerlogin' %}" method="post">
+            {% csrf_token %}
+            {{ formLogin.as_p }}
+
+            <div class="d-grid gap-2">
+                <input type="submit" value="Entrar" class="btn btn-success" expand="block">
+            </div>
+        </form>
+        <a href="{% url 'add_usuario' %}">Não tem cadastro? Cadastre-se</a>
+
+        <br>
+    </div>
+
+{% endblock %}

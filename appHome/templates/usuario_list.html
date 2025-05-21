@@ -1,0 +1,49 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <h1>Página home</h1>    
+    <h2>Estilo Global</h2>
+
+    <h1>Usuarios
+        <a href="{% url 'add_usuario' %}"> 
+                adicionar</a>
+    </h1>
+    
+    <table>
+        {% for user in usuarios %}
+        <tr>
+            <td>
+                <h2> {{ user.nome }} </h2>
+            </td>
+            <td>
+                <h2> {{ user.numero_residencia }} </h2>
+            </td>
+            <td style="padding: 6px;">
+                <h2> <a href="{% url 'excluir_usuario' user.id %}">
+                    excluir 
+                </a> </h2>
+            </td>
+            <td>
+                <h2> <a href="{% url 'editar_usuario' user.id %}">
+                    editar
+                </a> </h2>
+            </td>
+            {% endfor %}
+            {% for i in response %}
+            <td>
+                <h2> {{ i.logradouro }} </h2>
+            </td>
+            <td>
+                <h2> {{ i.bairro }} </h2>
+            </td>
+            <td>
+                <h2> {{ i.estado }} </h2>
+            </td>
+            {% endfor %}
+            <hr>
+        </tr>
+
+    </table>
+
+
+{% endblock %}

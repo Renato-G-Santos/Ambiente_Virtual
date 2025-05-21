@@ -1,0 +1,39 @@
+header{
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 36px;
+}
+h1{
+    color: blue;
+}
+nav{
+    background-color: black;
+    text-align: center;
+    padding: 10px;
+}
+a{
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+}
+footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;   
+    text-align: center; 
+    background-color: rgb(212, 206, 205);
+}
+body{
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+main{
+    width: 90%;
+    margin: auto;
+}
+.navbar-expand{
+    -sm|-md|-lg|-xl
+}
+
+ 
