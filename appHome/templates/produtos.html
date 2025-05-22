@@ -23,6 +23,8 @@
                     <li class="list-group-item">Descrição: {{ produto.descricao }}</li>
                     <li class="list-group-item">Quantidade: {{ produto.estoque }}</li>
                 </ul>
+                <a href="{% url 'checkout' produto.id %}" class="btn btn-primary">Comprar</a>
+
             </div>
                 <br>
             {% endfor %}

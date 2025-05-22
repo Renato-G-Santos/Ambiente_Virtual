@@ -10,7 +10,7 @@ class ProdutoAdmin(admin.ModelAdmin):
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ("nome", )
 
-
+admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(Usuario)
 admin.site.register(Produto, ProdutoAdmin)
 

@@ -174,6 +174,7 @@ def usuario_lista(request):
         return redirect('appHome')
         # Cria uma lista de usuários
     userLits = Usuario.objects.all()
+
     # Cria um dicionário com os dados a serem passados para o template
     context = {
         'usuarios': userLits
@@ -230,27 +231,23 @@ def editar_produto(request, id_produto):
     return render(request, 'editar_produto.html', context)
 
 
-# def consumir_api(request):
-#     response = requests.get('https://jsonplaceholder.typicode.com/users').json()
-#     return render(request, 'api.html', {'response': response})
+def checkout(request,id_produto ):
+    if request.session.get("email") is None:
+        return redirect('appHome')
+    
+    usuario = Usuario.objects.get(email=request.session['email'])
+    email = request.session.get('email')
+    produto = Produto.objects.get(id=id_produto)
+    produto.nome = produto.nome
+    produto.preco = produto.preco  
+    nome = usuario.nome
+    context = {
+        'email': email,
+        'nome': nome,
+        'produto': produto.nome,
+        'preco': produto.preco,
 
-
-
-
-def viacep(request, id_usuario):
-    ...
-#     # Obtenha o usuário pelo ID
-
-#     userLits = Usuario.objects.all()
-
-#     # Obtenha o CEP do usuário
-
-#         context = {
-#         'usuarios': userLits
-#     }
-
-
-#     # Renderize todas as respostas no template
-#     return HttpResponse(template.render(context))
-
+        }
+    template = loader.get_template('checkout.html')
+    return HttpResponse(template.render(context))
 

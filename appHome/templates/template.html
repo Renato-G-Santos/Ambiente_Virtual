@@ -14,11 +14,17 @@
             <img src="{% static 'djangologo.png' %}" width="30" height="30" alt="">
             Art Decó
         </a>
-        <a class="nav-link" href="{% url 'fazerlogin' %}">
+            <form class="form-inline " style="margin-right: 20px;" s>
+                <a  href="{% url 'fazerlogin' %}">
+                    <button class="btn btn-outline-success" type="button">login</button>
+                </a>    
+                <a  href="{% url 'produtos' %}">
+                    <button class="btn btn-outline-success" type="button">produtos</button>
+                </a>
+            </form>
         <form class="form-inline " style="margin-right: 20px;">
-            <button class="btn btn-outline-success" type="button">login</button>
+            
         </form>
-        </a>
           
       </nav>
     

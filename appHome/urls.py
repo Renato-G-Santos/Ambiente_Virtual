@@ -15,6 +15,5 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('excluir_produto/<int:id_produto>/', views.excluir_produto, name='excluir_produto'),
     path('editar_produto/<int:id_produto>/', views.editar_produto, name='editar_produto'),
-    path('api', views.viacep, name='viacep'),
+    path('checkout/<int:id_produto>/', views.checkout, name='checkout'),
 ]
-
