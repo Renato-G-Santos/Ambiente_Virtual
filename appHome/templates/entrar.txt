@@ -2,6 +2,7 @@ ambienteVirutal/Scripts/activate
 
 py -m pip install Django 
 py -m pip install Pillow 
+py -m pip install requests
 
 py -m manage runserver
 
@@ -18,4 +19,3 @@ Usuario.objects.all()
 
 py manage.py createsuperuser
 
-py -m pip install requests

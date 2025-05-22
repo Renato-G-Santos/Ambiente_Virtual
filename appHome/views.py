@@ -26,11 +26,22 @@ def add_usuario(request):
         # e redireciona para a página inicial
 
         if formUsuario.is_valid():
+            usuario = formUsuario.save(commit=False)  # Não salva ainda no banco
 
-            formUsuario.save()
+            # Busca o endereço com base no CEP
+            cep = formUsuario.cleaned_data['cep']
+            response = requests.get(f'https://viacep.com.br/ws/{cep}/json/')
+            if response.status_code == 200:
+                data = response.json()
+                usuario.logradouro = data.get('logradouro', '')
+                usuario.bairro = data.get('bairro', '')
+                usuario.localidade = data.get('localidade', '')
+                usuario.estado = data.get('uf', '')
+
+            usuario.save() 
             
             # Redireciona para a página inicial após o cadastro
-            return redirect('appHome')
+        return redirect('appHome')
 
     context = {
         'form': formUsuario
@@ -225,23 +236,21 @@ def editar_produto(request, id_produto):
 
 
 
+
 def viacep(request, id_usuario):
-    # Obtenha o usuário pelo ID
-    usuario = get_object_or_404(Usuario, id=id_usuario)
+    ...
+#     # Obtenha o usuário pelo ID
 
-    # Obtenha o CEP do usuário
-    cep = usuario.cep
+#     userLits = Usuario.objects.all()
 
-    # Faça a requisição à API ViaCEP
-    response = requests.get(f'https://viacep.com.br/ws/{cep}/json/')
-    if response.status_code == 200:
-        endereco = response.json()  # Converte a resposta em JSON
-    else:
-        endereco = {}  # Caso a API falhe, use um dicionário vazio
+#     # Obtenha o CEP do usuário
 
-    # Passe os dados do usuário e do endereço para o template
-    context = {
-        'usuario': usuario,
-        'endereco': endereco
-    }
-    return render(request, 'usuario_list.html', context)
+#         context = {
+#         'usuarios': userLits
+#     }
+
+
+#     # Renderize todas as respostas no template
+#     return HttpResponse(template.render(context))
+
+

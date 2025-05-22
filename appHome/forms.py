@@ -13,18 +13,19 @@ class FormUsuario(forms.ModelForm):
         'senha': forms.PasswordInput(attrs={'class': 'form-control border border-success', type: 'password'}),
         'cep': forms.TextInput(attrs={'class': 'form-control border border-success'}),
         'numero_residencia': forms.TextInput(attrs={'class': 'form-control border border-success'}),
-    }
+        }
 
 class FormProduto(forms.ModelForm):
     class Meta:
         model = Produto
-        fields = ['nome', 'preco', 'descricao', 'foto', 'estoque']
+        fields = ['nome', 'preco', 'descricao', 'foto', 'estoque', 'categoria']
     widgets = {
         'descricao': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
         'foto': forms.FileInput(attrs={'accept': 'image/*'}),
         'estoque': forms.NumberInput(attrs={'min': 0}),
         'nome': forms.TextInput(attrs={'class': 'form-control border border-success'}),
         'preco': forms.NumberInput(attrs={'class': 'form-control border border-success'}),
+        'categoria': forms.Select(attrs={'placeholder': 'Selecione uma categoria'}),
     }
 
 class FormLogin(forms.ModelForm):
