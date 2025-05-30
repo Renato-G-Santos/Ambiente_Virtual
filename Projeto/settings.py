@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'appHome',  # Adiciona o aplicativo appHome
+    'rest_framework',  # Adiciona o Django REST Framework
+    'corsheaders',  # Adiciona o CORS headers
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Adiciona o middleware CORS
 ]
 
 ROOT_URLCONF = 'Projeto.urls'
