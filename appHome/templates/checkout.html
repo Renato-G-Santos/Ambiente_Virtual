@@ -5,5 +5,24 @@
 
 <p> {{ nome }}</p>  
 <p> {{ email }} </p>
+<p> {{ produto }} </p>
+<p> {{ preco }} </p>
+
+<form method="POST">
+    {% csrf_token %}
+    <fieldset disabled>
+        <legend>Checkout - Finalizar Compra </legend>
+        <div class="mb-3">
+          <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ nome  }}" >
+          <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ email  }}" >
+          <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ produto  }}" >
+          <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ preco  }}" >
+        </div>
+    </fieldset>
+    {{ form.as_p   }}
+
+
+    <button type="submit" class="btn btn-success">Finalizar Compra</button>
+</form>
 
 {% endblock %}

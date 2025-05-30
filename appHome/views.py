@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse 
 # importa a função get_template() do módulo loader
 from django.template import loader
-from appHome.forms import FormUsuario, FormProduto, Usuario, Produto, FormLogin
+from appHome.forms import FormUsuario, FormProduto, Usuario, Produto, FormLogin, FormsVenda
 from datetime import timedelta
 import requests
 from django.shortcuts import get_object_or_404
@@ -234,18 +234,33 @@ def editar_produto(request, id_produto):
 def checkout(request,id_produto ):
     if request.session.get("email") is None:
         return redirect('appHome')
-    
+
     usuario = Usuario.objects.get(email=request.session['email'])
     email = request.session.get('email')
     produto = Produto.objects.get(id=id_produto)
+    produto.preco = produto.preco
     produto.nome = produto.nome
-    produto.preco = produto.preco  
+
+    formVenda = FormsVenda(request.POST or None)
+    if request.method == 'POST':
+        if formVenda.is_valid():
+            venda = formVenda.save(commit=False)
+            venda.cliente = usuario
+            venda.produto = produto
+            venda.preco_venda = produto.preco
+            venda.save()
+            return redirect('appHome')
+    
+
+    
+      
     nome = usuario.nome
     context = {
         'email': email,
         'nome': nome,
         'produto': produto.nome,
         'preco': produto.preco,
+        'form' : formVenda,
 
         }
     template = loader.get_template('checkout.html')
