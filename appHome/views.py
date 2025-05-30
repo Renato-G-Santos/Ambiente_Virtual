@@ -6,7 +6,8 @@ from appHome.forms import FormUsuario, FormProduto, Usuario, Produto, FormLogin,
 from datetime import timedelta
 import requests
 from django.shortcuts import get_object_or_404
-
+import base64, urllib, io
+import matplotlib.pyplot as plt
 # Create your views here.
 
 def appHome(request):
@@ -266,3 +267,22 @@ def checkout(request,id_produto ):
     template = loader.get_template('checkout.html')
     return HttpResponse(template.render(context))
 
+def grafico(request):
+    produtos = Produto.objects.all()
+    nome = [produto.nome for produto in produtos]
+    estoque = [produto.estoque for produto in produtos]
+    
+    fig, ax = plt.subplots()
+    ax.bar(nome, estoque)
+    ax.set_ylabel('Produto')
+    ax.set_xlabel('Estoque')
+    ax.set_title('Produtos')
+
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+
+    string = base64.b64encode(buf.read())
+    uri = 'data:image/png;base64,' + urllib.parse.quote(string)
+
+    return render(request, 'grafico.html', {'dados': uri})

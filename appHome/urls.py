@@ -17,4 +17,5 @@ urlpatterns = [
     path('excluir_produto/<int:id_produto>/', views.excluir_produto, name='excluir_produto'),
     path('editar_produto/<int:id_produto>/', views.editar_produto, name='editar_produto'),
     path('checkout/<int:id_produto>/', views.checkout, name='checkout'),
+    path('grafico', views.grafico, name='grafico'),
 ]
