@@ -38,12 +38,12 @@ class FormLogin(forms.ModelForm):
         'senha': forms.PasswordInput(attrs={'class': 'form-control border border-success', type: 'password'}),
     }
 
-class FormsVenda(forms.ModelForm):
+class FormVenda(forms.ModelForm):
     class Meta:
         model = Venda
-        fields = [ 'numero_cartao', 'validade', 'cvv']
-        widegts = {
-            'numero_cartao': forms.TextInput(attrs={'class': 'form-control border border-success'}),
+        fields = ['numero_cartao', 'validade', 'cvv']
+        widgets = {
+            'numero_cartao': forms.NumberInput(attrs={'class': 'form-control border border-success'}),
             'validade': forms.DateInput(attrs={'class': 'form-control border border-success', 'type': 'date'}),
-            'cvv': forms.TextInput(attrs={'class': 'form-control border border-success'}),
+            'cvv': forms.NumberInput(attrs={'class': 'form-control border border-success'}),
         }

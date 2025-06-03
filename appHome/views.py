@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse 
 # importa a função get_template() do módulo loader
 from django.template import loader
-from appHome.forms import FormUsuario, FormProduto, Usuario, Produto, FormLogin, FormsVenda
+from appHome.forms import FormUsuario, FormProduto, Usuario, Produto, FormLogin, FormVenda
 from datetime import timedelta
 import requests
 from django.shortcuts import get_object_or_404
@@ -13,6 +13,11 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import CategoriaSerializer
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+
+
+
 
 # Create your views here.
 
@@ -237,7 +242,7 @@ def editar_produto(request, id_produto):
     }
     return render(request, 'editar_produto.html', context)
 
-
+@csrf_exempt
 def checkout(request,id_produto ):
     if request.session.get("email") is None:
         return redirect('appHome')
@@ -248,7 +253,7 @@ def checkout(request,id_produto ):
     produto.preco = produto.preco
     produto.nome = produto.nome
     
-    formVenda = FormsVenda(request.POST or None)
+    formVenda = FormVenda(request.POST or None)
     if request.method == 'POST':
         if formVenda.is_valid():
             venda = formVenda.save(commit=False)
@@ -256,7 +261,6 @@ def checkout(request,id_produto ):
             venda.produto = produto
             venda.preco_venda = produto.preco
             venda.save()
-            return redirect('appHome')
 
     nome = usuario.nome
     context = {
@@ -267,7 +271,7 @@ def checkout(request,id_produto ):
         'form' : formVenda,
         'id_produto': id_produto
         }
-    template = loader.get_template('checkout.html')
+    template = loader.get_template('test.html')
     return HttpResponse(template.render(context))
 
 def grafico(request):
