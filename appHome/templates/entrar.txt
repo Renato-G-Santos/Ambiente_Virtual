@@ -17,9 +17,9 @@ py manage.py sqlmigrate appHome 0001
 py manage.py shell
 
 
+
 from appHome.models import sua model
 
 Usuario.objects.all()
 
 py manage.py createsuperuser
-

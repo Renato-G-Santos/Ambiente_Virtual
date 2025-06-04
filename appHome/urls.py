@@ -20,5 +20,6 @@ urlpatterns = [
     path('grafico', views.grafico, name='grafico'),
     path('categorias', views.getCategoria, name='categoria'),
     path('categoria/<int:id_categoria>/', views.getCategoriaID, name='CategoriaID'),
+    path('quem_somos', views.quem_somos, name='quem_somos'),
     ]
     

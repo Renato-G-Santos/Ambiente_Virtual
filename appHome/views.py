@@ -15,6 +15,7 @@ from rest_framework import status
 from .serializers import CategoriaSerializer
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
+import logging
 
 
 
@@ -124,14 +125,15 @@ def produtos(request):
     # Cria uma lista de produtos
     produtoList = Produto.objects.all()
     # Cria um dicionário com os dados a serem passados para o template
+
+    response = requests.get('https://api.thecatapi.com/v1/images/search?limit=10')
+    data = response.json()
+
     context = {
+        'gatos': data,
         'produtos': produtoList
     }
-    
-    # Carrega o template home.html
-    template = loader.get_template('produtos.html')
-    # Renderiza o template carregado
-    return HttpResponse(template.render(context))
+    return render(request, 'produtos.html', context)
 
 def cadastar_produto(request):
     if request.session.get("email") is None:
@@ -331,3 +333,7 @@ def getCategoriaID(request, id_categoria):
     elif request.method == 'DELETE':
         categoria.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+def quem_somos(request):
+
+    return render(redirect, 'quem_somos.html')

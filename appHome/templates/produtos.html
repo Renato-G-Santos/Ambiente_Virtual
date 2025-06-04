@@ -11,10 +11,10 @@
       
             {% for produto in produtos %}
         
-            <div class="card" style="width: 18rem;" class="col" style="margin-right: 10px;">
+            <div class="card" style="width: 18rem;" class="col"  >
                 <img src="{{ produto.foto.url }}" class="card-img-top" alt="...">
                
-                <div class="card-body">
+                <div class="card-body" style="padding: 10px; align-content: center;">
                     <h5 class="card-title">{{ produto.nome }}</h5>
                     <p class="card-text">R$ {{ produto.preco }}</p>
                 </div>
@@ -29,9 +29,34 @@
             </div>
                 <br>
             {% endfor %}
+        </div>    
+        <br>
+        <br>
+        <hr>
+        <div class="container text-center">
+            <div class="row align-items-start">
+    
+          
+                {% for item in gatos %}
+            
+                <div class="card" style="width: 18rem;" class="col" style="padding: 10px; align-items: center;" >
+                    <img src="{{ item.url }}" class="card-img-top" alt="...">
+                   
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.id }}</h5>
+                        <p class="card-text">R$ inestimável </p>
+                    </div>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Descrição: cat </li>
+                        <li class="list-group-item">Quantidade: 1</li>
+                    </ul>                       
+    
+                </div>
+                    <br>
+                {% endfor %}
 
-        </div>
-    </div>    
+    </div>
 
 {% endblock %}
 

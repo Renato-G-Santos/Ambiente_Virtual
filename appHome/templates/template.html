@@ -9,28 +9,44 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-light bg-light" >
+    <nav class="navbar fixed-top navbar-light bg-light " style="padding : 10px" >
         <a class="navbar-brand" href="{% url 'appHome' %}">
             <img src="{% static 'djangologo.png' %}" width="30" height="30" alt="">
             Art Decó
         </a>
-            <form class="form-inline " style="margin-right: 20px;" s>
-                <a  href="{% url 'fazerlogin' %}">
-                    <button class="btn btn-outline-success" type="button">login</button>
-                </a>    
-                <a  href="{% url 'produtos' %}">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a  class="nav-link" href="{% url 'produtos' %}">
                     <button class="btn btn-outline-success" type="button">produtos</button>
-                </a>
-            </form>
-        <form class="form-inline " style="margin-right: 20px;">
+                </a>            
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'quem_somos' %}">
+                    <button class="btn btn-outline-success" type="button">quem somos</button>
+                </a>  
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'fazerlogin' %}">
+                    <button class="btn btn-outline-success" type="button">login</button>
+                </a>             
+            </li>
+          </ul>
             
         </form>
           
       </nav>
-    
+    <br>
+    <br>
+    <br>
+    <br>
       {% block content %}
 
       {% endblock %}
+    <footer class="bg-white text-center text-lg-start" style="margin: 0; padding: 0;"></footer>
+        <div class="text-center p-3" style="background-color: rgba(211, 93, 93, 0.05);">
+            © 2023 Art Decó. Todos os direitos reservados.
+        </div>
+    </footer>
     
 </body>
 </html>
