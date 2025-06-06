@@ -106,7 +106,7 @@ def criar_produto(request):
 
 def lista_produtos(request):
     if request.session.get("email") is None:
-        return redirect('appHome')
+        return redirect('fazerlogin')
     # if request.session.get("email") is None:
     #     return redirect('fazerlogin')
     # Cria uma lista de produtos
@@ -137,7 +137,7 @@ def produtos(request):
 
 def cadastar_produto(request):
     if request.session.get("email") is None:
-        return redirect('appHome')
+        return redirect('fazerlogin')
     # if request.session.get("email") is None:
     #     return redirect('fazerlogin')
     formProduto = FormProduto(request.POST or None, request.FILES or None)
@@ -173,9 +173,10 @@ def fazerlogin(request):
                     request.session.set_expiry(timedelta(seconds=3600))
                     #Cria uma sessão com o email do usuário
                     request.session['email'] = _email
-                    return redirect('appHome')
+                    return redirect('dashboard')
                 
             except Usuario.DoesNotExist:
+                menssagem = TRUE
                 return render(request, 'login.html', {'error_message':
                 'Credenciais inválidas. Por favor, tente novamente.'})
     context = {
