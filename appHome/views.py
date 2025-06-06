@@ -274,7 +274,7 @@ def checkout(request,id_produto ):
         'form' : formVenda,
         'id_produto': id_produto
         }
-    template = loader.get_template('test.html')
+    template = loader.get_template('checkout.html')
     return HttpResponse(template.render(context))
 
 def grafico(request):

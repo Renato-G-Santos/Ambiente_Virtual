@@ -15,6 +15,7 @@ py manage.py migrate
 py manage.py sqlmigrate appHome 0001
 
 py manage.py shell
+d
 
 
 
